@@ -1,12 +1,17 @@
 const _ = require('lodash')
 
 const validatePin = function (pin) {
-    if (pin.length === 4 || pin.length === 6) {
-        if (pin.match(/[a-zA-Z]/i) === null) {
-            return true;
+    if (!(pin.length === 4 || pin.length === 6)) {
+        return false;
+    }
+
+    for (const n of pin) {
+        if (isNaN(Number(n)) === true) {
+            return false
         }
     }
-    return false;
+
+    return true;
 }
 
 const testOne = _.isEqual(validatePin('1234'), true)
